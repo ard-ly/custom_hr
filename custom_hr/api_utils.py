@@ -290,5 +290,3 @@ def get_age(dob):
     return today.year - dob.year - ((today.month, today.day) < (dob.month, dob.day))
 
 
-
-
