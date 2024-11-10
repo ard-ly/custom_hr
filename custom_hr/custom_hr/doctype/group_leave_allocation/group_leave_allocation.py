@@ -36,7 +36,7 @@ class GroupLeaveAllocation(Document):
 		emp_list =  frappe.db.sql(
 			"""
 				select
-					distinct t1.name as employee, t1.employee_name, t1.department, t1.grade, t1.gender, t1.custom_office , t1.date_of_birth , t1.custom_total_experience_in_years
+					distinct t1.name as employee, t1.employee_name, t1.department, t1.grade, t1.gender , t1.date_of_birth , t1.custom_total_experience_in_years
 				from
 					`tabEmployee` t1
 				where
@@ -95,14 +95,13 @@ def make_filters(self):
 	filters["company"] = self.company
 	filters["branch"] = self.branch
 	filters["department"] = self.department
-	filters["custom_office"] = self.office
 	filters["grade"] = self.grade
 	filters["gender"] = self.gender
 	return filters
 
 def get_filter_condition(filters):
 	cond = ""
-	for f in ["company", "branch", "department", "custom_office" , "grade"	, "gender"]:
+	for f in ["company", "branch", "department" , "grade"	, "gender"]:
 		if filters.get(f):
 			cond += " and t1." + f + " = " + frappe.db.escape(filters.get(f))
 
